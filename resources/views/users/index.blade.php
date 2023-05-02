@@ -23,6 +23,9 @@
                         Sample table page
                     </div>
 
+                    <div style="margin-bottom: 20px; margin-left: 900px">
+                        <Button style="background-color:blue; color:white;">Register Monitoring Personnel</Button>
+                    </div>
                     <div class="card">
                         <div class="card-body p-0">
 
@@ -34,12 +37,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $user)
-                                    <tr>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                    </tr>
-                                @endforeach
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
