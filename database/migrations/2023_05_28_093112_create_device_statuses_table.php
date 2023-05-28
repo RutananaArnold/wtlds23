@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('device_statuses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('device_id');
-            $table->string('title');
-            $table->string('message');
             $table->string('date');
-            $table->timestamps();
+            $table->string('time');
+            $table->string('status');
             $table->foreign('device_id')->references('id')->on('devices');
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('device_statuses');
     }
 };

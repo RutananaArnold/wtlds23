@@ -5,10 +5,8 @@
                         Devices
                     </div>
              <div class="card">
-             <div class="text-right"><a href="/deviceStatus"><button type="button" class="btn btn-success">Device Status</button></a></div>
-
               <div class="card-header">
-                <h3 class="card-title">Installed Devices</h3>
+                <h3 class="card-title">Device Status</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -28,20 +26,22 @@
                   <thead>
                     <tr>
                       <th>Device Name</th>
-                      <th>Latitude</th>
-                      <th>Longitude</th>
+                      <th>Status</th>
                       <th>Deployment Location</th>
+                      <th>Time</th>
+                      <th>Date</th>
                     </tr>
                   </thead>
                   <tbody>
-                  @foreach ($devices as $device)
+                 {{--  @foreach ($statuses as $status)
                     <tr>
-                        <td>{{ $device->name }}</td>
-                        <td>{{ $device->latitude }}</td>
-                        <td>{{ $device->longitude }}</td>
-                        <td>{{ $device->deploymentLocation }}</td>
+                        <td>{{ $status->name }}</td>
+                        <td>{{ $status->status }}</td>
+                        <td>{{ $status->deploymentLocation }}</td>
+                        <td>{{ $status->time }}</td>
+                        <td>{{ $status->date }}</td>
                     </tr>
-                   @endforeach
+                   @endforeach --}}
                   </tbody>
                 </table>
 
@@ -50,7 +50,7 @@
             </div>
             <!-- /.card -->
 
-           <div class="text-right"><a href="/addDevice"><button type="button" class="btn btn-info">Add Device</button></a></div>
+           <div class="text-right"><a href="#"><button type="button" class="btn btn-info">View On Map</button></a></div>
 
                 </div>
             </div>

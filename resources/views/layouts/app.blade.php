@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>WTLDS</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -30,7 +30,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                    {{ Auth::user()->name }}
+                    {{ Auth::user()->role }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" style="left: inherit; right: 0px;">
                     <a href="{{ route('profile.show') }}" class="dropdown-item">
@@ -97,7 +97,7 @@
 
 @vite('resources/js/app.js')
 <!-- AdminLTE App -->
-<script src="{{ asset('js/adminlte.min.js') }}" defer></script>
+<!-- <script src="{{ asset('js/adminlte.min.js') }}" defer></script> -->
 
 @yield('scripts')
 

@@ -1,20 +1,15 @@
-@extends('layouts.guest')
+@extends('layouts.app')
 
 @section('content')
-    <div class="card-body login-card-body">
-        <p class="login-box-msg">{{ __('Register') }}</p>
+    <div class="card-body">
+        <p class="login-box-msg">{{ __('Register a Monitoring Personnel') }}</p>
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('addUser') }}">
             @csrf
 
             <div class="input-group mb-3">
                 <input type="text" name="role" class="form-control @error('role') is-invalid @enderror"
                        placeholder="{{ __('Role') }}" required autocomplete="role" autofocus>
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-user"></span>
-                    </div>
-                </div>
                 @error('role')
                 <span class="error invalid-feedback">
                     {{ $message }}
@@ -25,11 +20,6 @@
             <div class="input-group mb-3">
                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                        placeholder="{{ __('Email') }}" required autocomplete="email">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-envelope"></span>
-                    </div>
-                </div>
                 @error('email')
                 <span class="error invalid-feedback">
                     {{ $message }}
@@ -40,11 +30,6 @@
             <div class="input-group mb-3">
                 <input type="text" name="contact" class="form-control @error('contact') is-invalid @enderror"
                        placeholder="{{ __('Contact') }}" required autocomplete="contact" autofocus>
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-user"></span>
-                    </div>
-                </div>
                 @error('contact')
                 <span class="error invalid-feedback">
                     {{ $message }}
@@ -55,11 +40,6 @@
             <div class="input-group mb-3">
                 <input type="text" name="fname" class="form-control @error('fname') is-invalid @enderror"
                        placeholder="{{ __('First Name') }}" required autocomplete="fname" autofocus>
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-user"></span>
-                    </div>
-                </div>
                 @error('fname')
                 <span class="error invalid-feedback">
                     {{ $message }}
@@ -70,11 +50,6 @@
             <div class="input-group mb-3">
                 <input type="text" name="lname" class="form-control @error('lname') is-invalid @enderror"
                        placeholder="{{ __('Last Name') }}" required autocomplete="lname" autofocus>
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-user"></span>
-                    </div>
-                </div>
                 @error('lname')
                 <span class="error invalid-feedback">
                     {{ $message }}
@@ -85,11 +60,6 @@
             <div class="input-group mb-3">
                 <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                        placeholder="{{ __('Password') }}" required autocomplete="new-password">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
-                    </div>
-                </div>
                 @error('password')
                 <span class="error invalid-feedback">
                     {{ $message }}
@@ -97,21 +67,10 @@
                 @enderror
             </div>
 
-            <div class="input-group mb-3">
-                <input type="password" name="password_confirmation"
-                       class="form-control @error('password_confirmation') is-invalid @enderror"
-                       placeholder="{{ __('Confirm Password') }}" required autocomplete="new-password">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
-                    </div>
-                </div>
-            </div>
-
             <div class="row">
-                <div class="col-12">
+                <div class="text-right">
                     <button type="submit"
-                            class="btn btn-primary btn-block">{{ __('Register') }}</button>
+                            class="btn btn-info">{{ __('Register Agent') }}</button>
                 </div>
             </div>
         </form>

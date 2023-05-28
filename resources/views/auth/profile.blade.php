@@ -27,15 +27,15 @@
                             <div class="card-body">
 
                                 <div class="input-group mb-3">
-                                    <input type="text" name="name"
-                                           class="form-control @error('name') is-invalid @enderror"
-                                           placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required>
+                                    <input type="text" name="role"
+                                           class="form-control @error('role') is-invalid @enderror"
+                                           placeholder="{{ __('Role') }}" value="{{ old('role', auth()->user()->role) }}" required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-user"></span>
                                         </div>
                                     </div>
-                                    @error('name')
+                                    @error('role')
                                     <span class="error invalid-feedback">
                                         {{ $message }}
                                     </span>
@@ -57,6 +57,57 @@
                                     </span>
                                     @enderror
                                 </div>
+
+                                <div class="input-group mb-3">
+                                    <input type="text" name="contact"
+                                           class="form-control @error('contact') is-invalid @enderror"
+                                           placeholder="{{ __('Contact') }}" value="{{ old('contact', auth()->user()->contact) }}" required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-user"></span>
+                                        </div>
+                                    </div>
+                                    @error('contact')
+                                    <span class="error invalid-feedback">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <input type="text" name="fname"
+                                           class="form-control @error('fname') is-invalid @enderror"
+                                           placeholder="{{ __('First Name') }}" value="{{ old('fname', auth()->user()->fname) }}" required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-user"></span>
+                                        </div>
+                                    </div>
+                                    @error('fname')
+                                    <span class="error invalid-feedback">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <input type="text" name="lname"
+                                           class="form-control @error('lname') is-invalid @enderror"
+                                           placeholder="{{ __('Last Name') }}" value="{{ old('lname', auth()->user()->lname) }}" required>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-user"></span>
+                                        </div>
+                                    </div>
+                                    @error('lname')
+                                    <span class="error invalid-feedback">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+
+
+
 
                                 <div class="input-group mb-3">
                                     <input type="password" name="password"

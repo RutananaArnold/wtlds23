@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Session::has('users.index'))
+   <span>{{Session::get('users.index')}}</span>
+@endif
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -18,35 +21,54 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-
-                    <div class="alert alert-info">
-                        Sample table page
-                    </div>
-
-                    <div style="margin-bottom: 20px; margin-left: 900px">
-                        <Button style="background-color:blue; color:white;">Register Monitoring Personnel</Button>
-                    </div>
-                    <div class="card">
-                        <div class="card-body p-0">
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($users as $user)
-                                        <tr>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
                         <!-- /.card-body -->
+
+        <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Registered Users</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Role</th>
+                      <th>Email</th>
+                      <th>Contact</th>
+                   </tr>
+                  </thead>
+                  <tbody>
+                  @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $user->fname }} {{ $user->lname }}</td>
+                        <td>{{ $user->role }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->contact }}</td>
+                    </tr>
+                   @endforeach
+                  </tbody>
+                </table>
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+            <div class="text-right"><a href="/addUser"><button type="button" class="btn btn-info">Register a Monitoring Personnel</button></a></div>
+
+            <!-- /.card -->
 
                         <div class="card-footer clearfix">
                             {{ $users->links() }}
