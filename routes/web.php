@@ -32,20 +32,37 @@ Route::middleware('auth')->group(function () {
 
 // reports and analtyics
     Route::get('reportsAndAnalytics', [\App\Http\Controllers\AnalyticsController::class, 'index'])->name('reports_and_analytics.analytics');
+    Route::post('/addReading', [\App\Http\Controllers\ReadingController::class, 'create']);
 
 // devices
     Route::get('devices', [\App\Http\Controllers\DevicesController::class, 'index'])->name('devices.devices');
     Route::post('/addDevice', [\App\Http\Controllers\DevicesController::class, 'create']);
     Route::get('deviceStatus', [\App\Http\Controllers\DeviceStatusController::class, 'index'])->name('devices.deviceStatus');
+    Route::post('/addDeviceStatus', [\App\Http\Controllers\DeviceStatusController::class, 'create']);
+    Route::get('ViewOnMap', [\App\Http\Controllers\ViewOnMapController::class, 'index'])->name('devices.ViewOnMap');
+
 
 // notifications
     Route::get('notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.notifications');
+    Route::post('/addNotification', [\App\Http\Controllers\NotificationsController::class, 'create']);
 
     Route::get('addDevice', function () {
 		return view('devices.addDevice');
 	})->name('addDevice');
 
+    Route::get('addDeviceStatus', function () {
+		return view('devices.addDeviceStatus');
+	})->name('addDeviceStatus');
+
     Route::get('addUser', function () {
 		return view('users.addUser');
 	})->name('addUser');
+
+    Route::get('addNotification', function () {
+		return view('notifications.addNotification');
+	})->name('addNotification');
+
+    Route::get('addReading', function () {
+		return view('reports_and_analytics.addReading');
+	})->name('addReading');
 });

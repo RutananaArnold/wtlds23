@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Reading extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'device_id',
+        'sensor1Reading',
+        'sensor2Reading',
+        'date',
+        'time',
+    ];
 }

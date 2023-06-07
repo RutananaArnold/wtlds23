@@ -8,8 +8,11 @@
             @csrf
 
             <div class="input-group mb-3">
-                <input type="text" name="role" class="form-control @error('role') is-invalid @enderror"
-                       placeholder="{{ __('Role') }}" required autocomplete="role" autofocus>
+            <select name="role" id="role" class="form-control">
+                        <option value="" disabled>select device status</option>
+                        <option value="admin">administrator</option>
+                        <option value="Monitoring Personnel">Monitoring Personnel</option>
+            </select>
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-user"></span>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Reading;
 use App\Http\Requests\StoreReadingRequest;
 use App\Http\Requests\UpdateReadingRequest;
+use Illuminate\Http\Request;
+use DB;
 
 class ReadingController extends Controller
 {
@@ -23,9 +25,28 @@ class ReadingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    protected function validator(array $data)
     {
-        //
+        return Validator::make($data, [
+            'sensor1Reading' => ['required', 'string', 'max:255'],
+            'sensor2Reading' => ['required', 'string', 'max:255'],
+            'date' => ['required', 'string', 'max:255'],
+            'time' => ['required', 'string', 'max:255'],
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+
+        DB::table('readings')->insert([
+            'device_id'=>1,
+            'sensor1Reading'=>$request->sensor2Reading,
+            'sensor2Reading'=>$request->sensor2Reading,
+            'date'=>$request->date,
+            'time'=>$request->time,
+
+        ]);
+        return back()->with('reports_and_analytics.addReading', 'Reading added successfully');
     }
 
     /**

@@ -21,27 +21,27 @@
                 </div>
               </div>
               <!-- /.card-header -->
+              <div class="text-right mt-3 mb-4"><a href="/addDeviceStatus"><button type="button" class="btn btn-success">Update Status</button></a></div>
               <div class="card-body table-responsive p-0" style="height: 300px;">
+
                 <table class="table table-head-fixed text-nowrap">
                   <thead>
                     <tr>
                       <th>Device Name</th>
-                      <th>Status</th>
-                      <th>Deployment Location</th>
-                      <th>Time</th>
                       <th>Date</th>
+                      <th>Time</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
-                 {{--  @foreach ($statuses as $status)
+                  @foreach ($statuses as $status)
                     <tr>
-                        <td>{{ $status->name }}</td>
-                        <td>{{ $status->status }}</td>
-                        <td>{{ $status->deploymentLocation }}</td>
-                        <td>{{ $status->time }}</td>
+                        <td>{{ $status->device_id }}</td>
                         <td>{{ $status->date }}</td>
+                        <td>{{ $status->time }}</td>
+                        <td>{{ $status->status }}</td>
                     </tr>
-                   @endforeach --}}
+                   @endforeach
                   </tbody>
                 </table>
 
@@ -50,7 +50,7 @@
             </div>
             <!-- /.card -->
 
-           <div class="text-right"><a href="#"><button type="button" class="btn btn-info">View On Map</button></a></div>
+           <div class="text-right mb-4"><a href="ViewOnMap"><button type="button" class="btn btn-info">View On Map</button></a></div>
 
                 </div>
             </div>

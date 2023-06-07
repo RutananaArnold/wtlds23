@@ -42,7 +42,7 @@
                                     <!-- small box -->
                                     <div class="small-box bg-info">
                                         <div class="inner">
-                                            <h3>150</h3>
+                                            <h3>{{count($incidents)}}</h3>
 
                                             <p>Incidents</p>
                                         </div>
@@ -57,7 +57,7 @@
                                     <!-- small box -->
                                     <div class="small-box bg-success">
                                         <div class="inner">
-                                            <h3>53</h3>
+                                            <h3>{{count($total_devices)}}</h3>
 
                                             <p>Devices in network</p>
                                         </div>
@@ -72,7 +72,7 @@
                                     <!-- small box -->
                                     <div class="small-box bg-warning">
                                         <div class="inner">
-                                            <h3>44</h3>
+                                            <h3>{{count($active_devices)}}</h3>
 
                                             <p>Active Devices</p>
                                         </div>
@@ -87,7 +87,7 @@
                                     <!-- small box -->
                                     <div class="small-box bg-danger">
                                         <div class="inner">
-                                            <h3>0</h3>
+                                            <h3>{{count($inactive_devices)}}</h3>
 
                                             <p>Devices not responding</p>
                                         </div>

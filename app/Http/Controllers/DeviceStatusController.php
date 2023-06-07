@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\DeviceStatus;
 use App\Http\Requests\StoreDeviceStatusRequest;
 use App\Http\Requests\UpdateDeviceStatusRequest;
+use Illuminate\Http\Request;
+use DB;
 
 class DeviceStatusController extends Controller
 {
@@ -15,8 +17,9 @@ class DeviceStatusController extends Controller
      */
     public function index()
     {
+        $statuses = DeviceStatus::paginate();
 
-        return view('devices.deviceStatus');
+        return view('devices.deviceStatus', compact('statuses'));
     }
 
 
@@ -25,9 +28,25 @@ class DeviceStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    protected function validator(array $data)
     {
-        //
+        return Validator::make($data, [
+            'date' => ['required', 'string', 'max:255'],
+            'time' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'string', 'max:255'],
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+
+        DB::table('device_statuses')->insert([
+            'device_id'=>1,
+            'date'=>$request->date,
+            'time'=>$request->time,
+            'status'=>$request->status,
+        ]);
+        return back()->with('devices.addDeviceStatus', 'Status Updated successfully');
     }
 
     /**

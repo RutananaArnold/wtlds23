@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Analytics;
 use Illuminate\Http\Request;
+use App\Models\Reading;
+use DB;
 
 class AnalyticsController extends Controller
 {
@@ -14,7 +16,8 @@ class AnalyticsController extends Controller
      */
     public function index()
     {
-        return view('reports_and_analytics.analytics');
+        $readings = Reading::paginate();
+        return view('reports_and_analytics.analytics', compact('readings'));
     }
 
     /**

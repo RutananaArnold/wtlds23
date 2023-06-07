@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'WTLDS') }}</title>
+    <title>WTLDS</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -18,7 +18,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="/">{{ config('app.name', 'WTLDS') }}</a>
+        <a href="/"><h2>WTLDS</h2></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">

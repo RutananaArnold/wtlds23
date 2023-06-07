@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class DeviceStatus extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'device_id',
+        'date',
+        'time',
+        'status',
+    ];
 }

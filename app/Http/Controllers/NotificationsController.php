@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notifications;
 use Illuminate\Http\Request;
+use DB;
 
 class NotificationsController extends Controller
 {
@@ -14,7 +15,8 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        return view('notifications.notifications');
+        $notifications = Notifications::paginate();
+        return view('notifications.notifications', compact('notifications'));
     }
 
     /**
@@ -22,10 +24,28 @@ class NotificationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    protected function validator(array $data)
     {
-        //
+        return Validator::make($data, [
+            'title' => ['required', 'string', 'max:255'],
+            'message' => ['required', 'string', 'max:255'],
+            'date' => ['required', 'string', 'max:255'],
+        ]);
     }
+
+    public function create(Request $request)
+    {
+
+        DB::table('notifications')->insert([
+            'device_id'=>1,
+            'title'=>$request->title,
+            'message'=>$request->message,
+            'date'=>$request->date,
+
+        ]);
+        return back()->with('notifications.addNotifications', 'Notification added successfully');
+    }
+   
 
     /**
      * Store a newly created resource in storage.

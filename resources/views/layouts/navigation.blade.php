@@ -31,12 +31,20 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('devices.devices') }}" class="nav-link">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="nav-icon bi bi-phone-vibrate-fill"></i>
                     <p>
                         {{ __('Devices') }}
                     </p>
                 </a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item text-dark" href="{{ route('devices.devices') }}">Installed Devices</a>
+                    <a class="dropdown-item text-dark" href="/addDevice">Add Device</a>
+                    <a class="dropdown-item text-dark" href="/deviceStatus">Device Status</a>
+                    <a class="dropdown-item text-dark" href="/addDeviceStatus">Update Status</a>
+                    <a class="dropdown-item text-dark" href="/ViewOnMap">View On Map</a>
+                </div>
             </li>
 
             <li class="nav-item">
