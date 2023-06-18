@@ -30,23 +30,31 @@ class ReadingController extends Controller
         return Validator::make($data, [
             'sensor1Reading' => ['required', 'string', 'max:255'],
             'sensor2Reading' => ['required', 'string', 'max:255'],
-            'date' => ['required', 'string', 'max:255'],
-            'time' => ['required', 'string', 'max:255'],
         ]);
     }
 
     public function create(Request $request)
     {
-
         DB::table('readings')->insert([
             'device_id'=>1,
             'sensor1Reading'=>$request->sensor2Reading,
             'sensor2Reading'=>$request->sensor2Reading,
-            'date'=>$request->date,
-            'time'=>$request->time,
-
+            'date'=> date('y-m-d'),
+            'time'=> date('h:i:s'),
         ]);
-        return back()->with('reports_and_analytics.addReading', 'Reading added successfully');
+
+        //update the status
+        DB::table('device_statuses')->insert([
+            'device_id'=> 1,
+            'status' => $request->closed,
+            'date'=> date('y-m-d'),
+            'time'=> date('h:i:s'),
+        ]);
+
+
+        return response(['success' => true]);
+
+        //return back()->with('reports_and_analytics.addReading', 'Reading added successfully');
     }
 
     /**
