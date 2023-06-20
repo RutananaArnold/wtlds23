@@ -23,7 +23,7 @@
 
             <div class="input-group mb-3">
             <select name="role" id="role" class="form-control">
-                        <option value="" disabled>select device status</option>
+                        <option value="">Select Role</option>
                         <option value="admin">administrator</option>
                         <option value="Monitoring Personnel">Monitoring Personnel</option>
             </select>

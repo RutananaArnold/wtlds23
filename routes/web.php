@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('deviceStatus', [\App\Http\Controllers\DeviceStatusController::class, 'index'])->name('devices.deviceStatus');
     Route::post('/addDeviceStatus', [\App\Http\Controllers\DeviceStatusController::class, 'create']);
     Route::get('ViewOnMap', [\App\Http\Controllers\ViewOnMapController::class, 'index'])->name('devices.ViewOnMap');
+    Route::get('openValve', [\App\Http\Controllers\DevicesController::class, 'open'])->name('devices.openValve');
 
 
 // notifications
