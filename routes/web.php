@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
 
 // reports and analtyics
     Route::get('reportsAndAnalytics', [\App\Http\Controllers\AnalyticsController::class, 'index'])->name('reports_and_analytics.analytics');
-    Route::post('/addReading', [\App\Http\Controllers\ReadingController::class, 'create']);
 
 // devices
     Route::get('devices', [\App\Http\Controllers\DevicesController::class, 'index'])->name('devices.devices');
