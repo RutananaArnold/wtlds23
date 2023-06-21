@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\Devices;
 use DB;
 
 class ViewOnMapController extends Controller
@@ -13,7 +14,8 @@ class ViewOnMapController extends Controller
      */
     public function index()
     {
-            return view('devices.ViewOnMap');
+        $coordinates = Devices::all();
+            return view('devices.ViewOnMap', compact('coordinates'));
     }
     
 }

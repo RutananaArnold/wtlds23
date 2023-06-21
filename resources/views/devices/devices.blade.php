@@ -31,6 +31,7 @@
                       <th>Latitude</th>
                       <th>Longitude</th>
                       <th>Deployment Location</th>
+                      <th>Valve Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -40,6 +41,7 @@
                         <td>{{ $device->latitude }}</td>
                         <td>{{ $device->longitude }}</td>
                         <td>{{ $device->deploymentLocation }}</td>
+                        <td>{{$device->valveStatus}}</td>
                     </tr>
                    @endforeach
                   </tbody>

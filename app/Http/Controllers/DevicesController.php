@@ -31,9 +31,10 @@ class DevicesController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'latitude' => ['required', 'string', 'max:255'],
-            'longitude' => ['required', 'string', 'max:255'],
+            'latitude' => ['required', 'float'],
+            'longitude' => ['required', 'float',],
             'deploymentLocation' => ['required', 'string', 'max:255'],
+            'valveStatus' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -46,6 +47,7 @@ class DevicesController extends Controller
             'latitude'=>$request->latitude,
             'longitude'=>$request->longitude,
             'deploymentLocation'=>$request->deploymentLocation,
+            'valveStatus' => $request->valveStatus,
 
         ]);
         return back()->with('devices.addDevice', 'Device added successfully');

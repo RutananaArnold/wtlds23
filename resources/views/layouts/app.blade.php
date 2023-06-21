@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
     @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini">

@@ -22,17 +22,27 @@
 
                   <div class="form-group">
                     <label for="latitude">Latitude</label>
-                    <input type="text" class="form-control" id="latitude" placeholder="Latitude" name="latitude">
+                    <input type="float" class="form-control" id="latitude" placeholder="Latitude" name="latitude">
                   </div>
 
                   <div class="form-group">
                     <label for="longitude">Longitude</label>
-                    <input type="text" class="form-control" id="longitude" placeholder="longitude" name="longitude">
+                    <input type="float" class="form-control" id="longitude" placeholder="longitude" name="longitude">
                   </div>
 
                   <div class="form-group">
                     <label for="deploymentLocation">Deployment Location</label>
                     <input type="text" class="form-control" id="deploymentLocation" placeholder="deploymentLocation" name="deploymentLocation">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="valveStatus">Valve status</label>
+                    <select name="valveStatus" id="" class="form-control">
+                        <option value="">select valve status</option>
+                        <option value="on">On</option>
+                        <option value="off">Off</option>
+                    </select>
+                    
                   </div>
 
                 <!-- /.card-body -->
