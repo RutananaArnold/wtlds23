@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Devices;
 use App\Models\Notifications;
 use Illuminate\Support\Facades\Notification as LaravelNotification;
-use App\Notifications\NotificationEvent;
+use App\Events\NotificationEvent;
 use App\Models\Reading;
 
 class SensorReadingController extends Controller
@@ -27,19 +27,20 @@ class SensorReadingController extends Controller
             'date' => now()->format('Y-m-d'),
             'time' => now()->format('H:i:s'),
             
+            
         ]);
 
         $Reading->save();
 
         // Update the device status in the "devices" table
-        $device = Device::find($deviceId);
+        $device = Devices::find($deviceId);
         $device->valveStatus = ($incident == 1) ? 'Incident Detected' : 'No Incident';
         $device->save();
 
         // Generate notification if incident detected
         if ($incident == 1) {
             // Create a new notification in the "notifications" table
-            $notification = Notification::create([
+            $notification = Notifications::create([
                 'device_id' => $deviceId,
                 'title' =>'incident',
                 'message' => 'Incident detected!',

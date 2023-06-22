@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WTLDS</title>
-    <!-- The jquery stuff i put for toastr -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>        
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+   
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -21,22 +18,9 @@
             height: 400px;
         }
     </style>
+     
     @yield('styles')
-    <script>
-
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('9415bf58dce0534cffcc', {
-      cluster: 'ap2'
-    });
-
-    var channel = pusher.subscribe('popup-channel');
-    channel.bind('user-register', function(data) {
-    toastr.warning(JSON.stringify(data)+'device detected incident');
-      
-    });
-  </script>
+    
     
 </head>
 <body class="hold-transition sidebar-mini">
