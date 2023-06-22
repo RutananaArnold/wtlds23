@@ -6,7 +6,7 @@
    <span>{{Session::get('devices.addDeviceStatus')}}</span>
 @endif
 
-<div class="card card-primary">
+<div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Open Valve</h3>
               </div>
@@ -16,15 +16,10 @@
                @csrf
                 <div class="card-body">
                     <!-- Default checked -->
-                    <div class="custom-control custom-switch">
+                    <div class="custom-control custom-switch mt-4 text-center mb-4">
                         <input type="checkbox" class="custom-control-input" id="customSwitch1">
                         <label class="custom-control-label " for="customSwitch1">Open Valve</label>
                     </div>
-
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
               </form>
             </div>
             <!-- /.card -->

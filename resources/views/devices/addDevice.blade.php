@@ -6,7 +6,7 @@
    <span>{{Session::get('devices.addDevice')}}</span>
 @endif
 
-<div class="card card-primary">
+<div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Add Device</h3>
               </div>

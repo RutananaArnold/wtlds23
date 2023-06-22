@@ -28,8 +28,8 @@ class ReadingController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'sensor1Reading' => ['required', 'string', 'max:255'],
-            'sensor2Reading' => ['required', 'string', 'max:255'],
+            'sensor1Reading' => ['required', 'float', 'max:255'],
+            'sensor2Reading' => ['required', 'float', 'max:255'],
         ]);
     }
 
@@ -46,7 +46,7 @@ class ReadingController extends Controller
         //update the status
         DB::table('device_statuses')->insert([
             'device_id'=> 1,
-            'status' => $request->closed,
+            'status' =>'closed',
             'date'=> date('y-m-d'),
             'time'=> date('h:i:s'),
         ]);

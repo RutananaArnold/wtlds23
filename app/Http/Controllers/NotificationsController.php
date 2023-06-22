@@ -29,7 +29,6 @@ class NotificationsController extends Controller
         return Validator::make($data, [
             'title' => ['required', 'string', 'max:255'],
             'message' => ['required', 'string', 'max:255'],
-            'date' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -40,7 +39,7 @@ class NotificationsController extends Controller
             'device_id'=>1,
             'title'=>$request->title,
             'message'=>$request->message,
-            'date'=>$request->date,
+            'date'=> date('y-m-d'),
 
         ]);
         return back()->with('notifications.addNotifications', 'Notification added successfully');
