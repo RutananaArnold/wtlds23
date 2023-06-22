@@ -31,8 +31,6 @@ class DeviceStatusController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'date' => ['required', 'string', 'max:255'],
-            'time' => ['required', 'string', 'max:255'],
             'status' => ['required', 'string', 'max:255'],
         ]);
     }
@@ -42,8 +40,8 @@ class DeviceStatusController extends Controller
 
         DB::table('device_statuses')->insert([
             'device_id'=>1,
-            'date'=>$request->date,
-            'time'=>$request->time,
+            'date'=> date('y-m-d'),
+            'time'=> date('h:i:s'),
             'status'=>$request->status,
         ]);
         return back()->with('devices.addDeviceStatus', 'Status Updated successfully');
