@@ -20,6 +20,8 @@ return new class extends Migration
             $table->float('sensor2Reading');
             $table->string('date');
             $table->string('time');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
             $table->foreign('device_id')->references('id')->on('devices');
         });
     }
