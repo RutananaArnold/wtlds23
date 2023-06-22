@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
+this is the one you will push
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -16,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//for testing
+
+Route::get('/testingForm', function () {
+    return view('testingForm');
+});
+
+Route::post('/testingForm', [App\Http\Controllers\SensorReadingController::class, 'store']);
 
 Auth::routes();
 
