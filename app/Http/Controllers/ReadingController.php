@@ -46,7 +46,7 @@ class ReadingController extends Controller
         //update the status
         DB::table('device_statuses')->insert([
             'device_id'=> 1,
-            'status' => $request->closed,
+            'status' =>'closed',
             'date'=> date('y-m-d'),
             'time'=> date('h:i:s'),
         ]);
