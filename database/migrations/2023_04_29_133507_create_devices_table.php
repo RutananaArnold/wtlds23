@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('deploymentLocation');
             $table->string('valveStatus');
             $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
             $table->foreign('user_id')->references('id')->on('users');
 
         });

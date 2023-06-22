@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+ 
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -32,6 +32,7 @@
                         </div><!-- /.container-fluid -->
                     </div>
                     <!-- /.content-header -->
+                    
 
                     <!-- Main content -->
                     <section class="content">
@@ -99,7 +100,26 @@
                                 </div>
                                 <!-- ./col -->
                             </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script>
 
+        // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
+
+        var pusher = new Pusher('9415bf58dce0534cffcc', {
+         cluster: 'ap2'
+        });
+
+    var channel = pusher.subscribe('popup-channel');
+    channel.bind('user-register', function(data) {
+    toastr.warning(JSON.stringify(data)+'device detected incident');
+      
+    });
+  </script>
+                            
                             {{-- graphs section --}}
                             <div class="row">
                                 <div class="col-lg-6">
