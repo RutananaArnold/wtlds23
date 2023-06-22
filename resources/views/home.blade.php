@@ -119,97 +119,133 @@
       
     });
   </script>
-                            
-                            {{-- graphs section --}}
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="card">
-                                        <div class="card-header border-0">
-                                            <div class="d-flex justify-content-between">
-                                                <h3 class="card-title">Online Store Visitors</h3>
-                                                <a href="javascript:void(0);">View Report</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="d-flex">
-                                                <p class="d-flex flex-column">
-                                                    <span class="text-bold text-lg">820</span>
-                                                    <span>Visitors Over Time</span>
-                                                </p>
-                                                <p class="ml-auto d-flex flex-column text-right">
-                                                    <span class="text-success">
-                                                        <i class="fas fa-arrow-up"></i> 12.5%
-                                                    </span>
-                                                    <span class="text-muted">Since last week</span>
-                                                </p>
-                                            </div>
-                                            <!-- /.d-flex -->
-
-                                            <div class="position-relative mb-4">
-                                                <canvas id="visitors-chart" height="200"></canvas>
-                                            </div>
-
-                                            <div class="d-flex flex-row justify-content-end">
-                                                <span class="mr-2">
-                                                    <i class="fas fa-square text-primary"></i> This Week
-                                                </span>
-
-                                                <span>
-                                                    <i class="fas fa-square text-gray"></i> Last Week
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- /.col-md-6 -->
-                                <div class="col-lg-6">
-                                    <div class="card">
-                                        <div class="card-header border-0">
-                                            <div class="d-flex justify-content-between">
-                                                <h3 class="card-title">Sales</h3>
-                                                <a href="javascript:void(0);">View Report</a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="d-flex">
-                                                <p class="d-flex flex-column">
-                                                    <span class="text-bold text-lg">$18,230.00</span>
-                                                    <span>Sales Over Time</span>
-                                                </p>
-                                                <p class="ml-auto d-flex flex-column text-right">
-                                                    <span class="text-success">
-                                                        <i class="fas fa-arrow-up"></i> 33.1%
-                                                    </span>
-                                                    <span class="text-muted">Since last month</span>
-                                                </p>
-                                            </div>
-                                            <!-- /.d-flex -->
-
-                                            <div class="position-relative mb-4">
-                                                <canvas id="sales-chart" height="200"></canvas>
-                                            </div>
-
-                                            <div class="d-flex flex-row justify-content-end">
-                                                <span class="mr-2">
-                                                    <i class="fas fa-square text-primary"></i> This year
-                                                </span>
-
-                                                <span>
-                                                    <i class="fas fa-square text-gray"></i> Last year
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.col-md-6 -->
-                            </div>
-                            </p>
-                        </div>
-                </div>
-            </div>
-        </div>
         <!-- /.row -->
+
+        {{-- 1st graph row --}}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="card-title">Device flow rates</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <p class="ml-auto d-flex flex-column text-right">
+                                            <span class="text-muted">Real time Flow rate</span>
+                                        </p>
+                                    </div>
+                                    <!-- /.d-flex -->
+
+                                    <div class="position-relative mb-4">
+                                    <canvas id="flowRateChart" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('flowRateChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: @json($labels),
+            datasets: [
+                {
+                    label: 'Sensor 1',
+                    data: @json($sensor1Data),
+                    borderColor: '#0077F7',
+                    fill: false
+                },
+                {
+                    label: 'Sensor 2',
+                    data: @json($sensor2Data),
+                    borderColor: 'gray',
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Flow Rate'
+                    }
+                }
+            }
+        }
+    });
+</script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /.col-md-6 -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="card-title">Incidents Detected</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <p class="ml-auto d-flex flex-column text-right">
+                                            <span class="text-muted">Past Week</span>
+                                        </p>
+                                    </div>
+                                    <!-- /.d-flex -->
+
+                                    <div class="position-relative mb-4">
+                                        <canvas id="incidentChart" height="200"></canvas>
+
+                                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('incidentChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @json($labels),
+                datasets: [
+                    {
+                        label: 'Incidents',
+                        data: @json($counts),
+                        backgroundColor: '#0077F7',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Incident Count'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+                 
     </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
