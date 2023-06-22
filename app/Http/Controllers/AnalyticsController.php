@@ -6,6 +6,9 @@ use App\Models\Analytics;
 use Illuminate\Http\Request;
 use App\Models\Reading;
 use DB;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
+use App\Models\Notifications;
 
 class AnalyticsController extends Controller
 {
@@ -14,11 +17,32 @@ class AnalyticsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $readings = Reading::paginate();
-        return view('reports_and_analytics.analytics', compact('readings'));
+
+        $sensorReadings = Reading::orderBy('created_at')
+            ->get();
+        $labels = $sensorReadings->pluck('time');
+        $sensor1Data = $sensorReadings->pluck('sensor1Reading');
+        $sensor2Data = $sensorReadings->pluck('sensor2Reading');
+
+
+        $notifications = Notifications::select(
+            DB::raw('DATE(created_at) as date1'),
+            DB::raw('COUNT(*) as count')
+        )
+        ->groupBy('date1')
+        ->get();
+
+    $ilabels = $notifications->pluck('date1')->toArray();
+    $counts = $notifications->pluck('count')->toArray();
+        return view('reports_and_analytics.analytics', compact('readings', 'sensor1Data', 'sensor2Data', 'labels', 'ilabels', 'counts'));
+
+
     }
+
+
 
     /**
      * Show the form for creating a new resource.

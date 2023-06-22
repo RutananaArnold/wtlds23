@@ -36,19 +36,19 @@ class ReadingController extends Controller
     public function create(Request $request)
     {
         DB::table('readings')->insert([
-            'device_id'=>1,
-            'sensor1Reading'=>$request->sensor2Reading,
-            'sensor2Reading'=>$request->sensor2Reading,
-            'date'=> date('y-m-d'),
-            'time'=> date('h:i:s'),
+            'device_id' => 1,
+            'sensor1Reading' => $request->sensor1Reading,
+            'sensor2Reading' => $request->sensor2Reading,
+            'date' => date('y-m-d'),
+            'time' => date('h:i:s'),
         ]);
 
         //update the status
         DB::table('device_statuses')->insert([
-            'device_id'=> 1,
-            'status' =>'closed',
-            'date'=> date('y-m-d'),
-            'time'=> date('h:i:s'),
+            'device_id' => 1,
+            'status' => 'closed',
+            'date' => date('y-m-d'),
+            'time' => date('h:i:s'),
         ]);
 
 
