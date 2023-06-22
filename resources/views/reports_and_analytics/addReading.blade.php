@@ -17,12 +17,12 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="title">Sensor 1 Reading</label>
-                    <input type="text" class="form-control" id="sensor1Reading" placeholder="Sensor 1 Reading" name="sensor1Reading">
+                    <input type="float" class="form-control" id="sensor1Reading" placeholder="Sensor 1 Reading" name="sensor1Reading">
                   </div>
 
                   <div class="form-group">
                     <label for="message">Sensor 2 Reading</label>
-                    <input type="text" class="form-control" id="sensor1Reading" placeholder="Sensor 1 Reading" name="sensor2Reading">
+                    <input type="float" class="form-control" id="sensor1Reading" placeholder="Sensor 1 Reading" name="sensor2Reading">
                   </div>
 
                   <div class="form-group">

@@ -28,8 +28,8 @@ class ReadingController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'sensor1Reading' => ['required', 'string', 'max:255'],
-            'sensor2Reading' => ['required', 'string', 'max:255'],
+            'sensor1Reading' => ['required', 'float', 'max:255'],
+            'sensor2Reading' => ['required', 'float', 'max:255'],
         ]);
     }
 
