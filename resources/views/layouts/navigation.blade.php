@@ -31,7 +31,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#dropdown-menu" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="nav-icon bi bi-phone-vibrate-fill"></i>
                     <p>
                         {{ __('Devices') }}
