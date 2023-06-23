@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WTLDS</title>
-   
+
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -18,10 +18,10 @@
             height: 400px;
         }
     </style>
-     
+
     @yield('styles')
-    
-    
+
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -105,14 +105,13 @@
 <!-- REQUIRED SCRIPTS -->
 
 @vite('resources/js/app.js')
-<!-- AdminLTE App -->
-<!-- <script src="{{ asset('js/adminlte.min.js') }}" defer></script> -->
 
 @yield('scripts')
 
-<script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="plugins/jquery/jquery.min.js"></script>
 <!-- AdminLTE -->
 <script src="dist/js/adminlte.js"></script>
 
