@@ -1,3 +1,13 @@
+<head>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Include Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 <!-- Sidebar -->
@@ -30,15 +40,15 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="devicesDropdown">
                     <i class="nav-icon bi bi-phone-vibrate-fill"></i>
                     <p>
                         {{ __('Devices') }}
                     </p>
                 </a>
 
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" aria-labelledby="devicesDropdown">
                     <a class="dropdown-item text-dark" href="{{ route('devices.devices') }}">Installed Devices</a>
                     <a class="dropdown-item text-dark" href="/addDevice">Add Device</a>
                     <a class="dropdown-item text-dark" href="/deviceStatus">Device Status</a>

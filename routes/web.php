@@ -21,16 +21,18 @@ Route::get('/', function () {
 
 //for testing
 
-Route::get('/testingForm', function () {
+/*Route::get('/testingForm', function () {
     return view('testingForm');
-});
+});*/
 
-Route::post('/testingForm', [App\Http\Controllers\SensorReadingController::class, 'store']);
+//one of the url endpoints 
+Route::post('/sendReadings', [App\Http\Controllers\SensorReadingController::class, 'store']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+//the route for checking for commands 
+Route::get('/check_update', [\App\Http\Controllers\CheckCommandUpdate::class, 'checkUpdate']);
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 // users
@@ -44,11 +46,12 @@ Route::middleware('auth')->group(function () {
     Route::get('reportsAndAnalytics', [\App\Http\Controllers\AnalyticsController::class, 'index'])->name('reports_and_analytics.analytics');
     Route::post('/addReading', [\App\Http\Controllers\ReadingController::class, 'create'])->name('reports_and_analytics.addReading');
 // devices
-    Route::get('devices', [\App\Http\Controllers\DevicesController::class, 'index'])->name('devices.devices');
+    Route::get('/devices', [\App\Http\Controllers\DevicesController::class, 'index'])->name('devices.devices');
     Route::post('/addDevice', [\App\Http\Controllers\DevicesController::class, 'create']);
-    Route::get('deviceStatus', [\App\Http\Controllers\DeviceStatusController::class, 'index'])->name('devices.deviceStatus');
+    Route::get('/deviceStatus', [\App\Http\Controllers\DeviceStatusController::class, 'index'])->name('devices.deviceStatus');
     Route::post('/addDeviceStatus', [\App\Http\Controllers\DeviceStatusController::class, 'create']);
-    Route::get('ViewOnMap', [\App\Http\Controllers\ViewOnMapController::class, 'index'])->name('devices.ViewOnMap');
+    Route::get('/ViewOnMap', [\App\Http\Controllers\ViewOnMapController::class, 'index'])->name('devices.ViewOnMap');
+    //valve for sending command to open the valve
     Route::get('openValve', [\App\Http\Controllers\DevicesController::class, 'open'])->name('devices.openValve');
     Route::post('/devices/{device}/update', [\App\Http\Controllers\DevicesController::class, 'update'])->name('devices.update');
 

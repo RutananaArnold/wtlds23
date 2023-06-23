@@ -35,6 +35,7 @@ class DevicesController extends Controller
             'longitude' => ['required', 'float',],
             'deploymentLocation' => ['required', 'string', 'max:255'],
             'valveStatus' => ['required', 'string', 'max:255'],
+            'openCommand' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -48,6 +49,7 @@ class DevicesController extends Controller
             'longitude'=>$request->longitude,
             'deploymentLocation'=>$request->deploymentLocation,
             'valveStatus' => $request->valveStatus,
+            'openCommand' => 'off',
 
         ]);
         return back()->with('devices.addDevice', 'Device added successfully');
