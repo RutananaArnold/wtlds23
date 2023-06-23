@@ -93,9 +93,12 @@ class DevicesController extends Controller
      * @param  \App\Models\Devices  $devices
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Devices $devices)
+    public function update(Devices $device)
     {
-        //
+        $device->valveStatus = 'on';
+        $device->save();
+
+        return redirect()->back()->with('success', 'Valve status updated successfully.');
     }
 
     /**
@@ -111,8 +114,8 @@ class DevicesController extends Controller
 
     public function open()
     {
-        //$devices = Devices::paginate();
+        $devices = Devices::where('valveStatus', 'off')->get();
 
-        return view('devices.openValve');
+        return view('devices.openValve', compact('devices'));
     }
 }
