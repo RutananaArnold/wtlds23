@@ -35,6 +35,7 @@ class DevicesController extends Controller
             'longitude' => ['required', 'float',],
             'deploymentLocation' => ['required', 'string', 'max:255'],
             'valveStatus' => ['required', 'string', 'max:255'],
+            'openCommand' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -48,6 +49,7 @@ class DevicesController extends Controller
             'longitude'=>$request->longitude,
             'deploymentLocation'=>$request->deploymentLocation,
             'valveStatus' => $request->valveStatus,
+            'openCommand' => 'off',
 
         ]);
         return back()->with('devices.addDevice', 'Device added successfully');
@@ -93,9 +95,12 @@ class DevicesController extends Controller
      * @param  \App\Models\Devices  $devices
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Devices $devices)
+    public function update(Devices $device)
     {
-        //
+        $device->valveStatus = 'on';
+        $device->save();
+
+        return redirect()->back()->with('success', 'Valve status updated successfully.');
     }
 
     /**
@@ -111,7 +116,8 @@ class DevicesController extends Controller
 
     public function open()
     {
+        $devices = Devices::where('valveStatus', 'off')->get();
 
-        return view('devices.openValve');
+        return view('devices.openValve', compact('devices'));
     }
 }

@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/ViewOnMap', [\App\Http\Controllers\ViewOnMapController::class, 'index'])->name('devices.ViewOnMap');
     //valve for sending command to open the valve
     Route::get('openValve', [\App\Http\Controllers\DevicesController::class, 'open'])->name('devices.openValve');
+    Route::post('/devices/{device}/update', [\App\Http\Controllers\DevicesController::class, 'update'])->name('devices.update');
+
 
 
 // notifications
