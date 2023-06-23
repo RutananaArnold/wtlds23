@@ -111,7 +111,6 @@ class DevicesController extends Controller
 
     public function open()
     {
-        //$devices = Devices::paginate();
 
         return view('devices.openValve');
     }

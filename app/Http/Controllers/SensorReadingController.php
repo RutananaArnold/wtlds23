@@ -34,7 +34,7 @@ class SensorReadingController extends Controller
 
         // Update the device status in the "devices" table
         $device = Devices::find($deviceId);
-        $device->valveStatus = ($incident == 1) ? 'Incident Detected' : 'No Incident';
+        $device->valveStatus = ($incident == 1) ? 'closed' : 'open';
         $device->save();
 
         // Generate notification if incident detected
@@ -46,8 +46,7 @@ class SensorReadingController extends Controller
                 'message' => 'Incident detected!',
                 'time' => now()->format('H:i:s'),
                 'date' => now()->format('Y-m-d'),
-                //'created_at' => now(),
-                //'updated_at' => now(),
+                
             ]);
 
         
