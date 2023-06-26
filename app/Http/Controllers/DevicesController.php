@@ -14,9 +14,18 @@ class DevicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $devices = Devices::paginate();
+        $searchTerm = $request->input('search');
+
+        if ($searchTerm){
+            $device = Devices::where('name', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('deploymentLocation', 'LIKE', '%' . $searchTerm . '%')
+                ->get();
+        
+            return view('devices.devices', ['devices' => $device]);
+        }
 
         return view('devices.devices', compact('devices'));
     }

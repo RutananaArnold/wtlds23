@@ -28,15 +28,16 @@
                 <h3 class="card-title">Registered Users</h3>
 
                 <div class="card-tools">
+                <form action="{{ route('users.index') }}" method ="GET">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
+                    <input type="text" name="search" class="form-control float-right" placeholder="Search">
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default">
                         <i class="fas fa-search"></i>
                       </button>
                     </div>
                   </div>
+                  </form>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -69,11 +70,6 @@
             <div class="text-right"><a href="/addUser"><button type="button" class="btn btn-info">Register a Monitoring Personnel</button></a></div>
 
             <!-- /.card -->
-
-                        <div class="card-footer clearfix">
-                            {{ $users->links() }}
-                        </div>
-                    </div>
 
                 </div>
             </div>

@@ -8,8 +8,11 @@
             @csrf
 
             <div class="input-group mb-3">
-                <input type="text" name="role" class="form-control @error('role') is-invalid @enderror"
-                       placeholder="{{ __('Role') }}" required autocomplete="role" autofocus>
+            <select name="role" id="role" class="form-control">
+                        <option value="">Select Role</option>
+                        <option value="admin">administrator</option>
+                        <option value="Monitoring Personnel">Monitoring Personnel</option>
+            </select>
                 @error('role')
                 <span class="error invalid-feedback">
                     {{ $message }}

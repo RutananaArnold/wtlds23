@@ -9,15 +9,16 @@
                 <h3 class="card-title">Notifications</h3>
 
                 <div class="card-tools">
+                  <form action="{{ route('notifications.notifications') }}" method ="GET">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
+                    <input type="text" name="search" class="form-control float-right" placeholder="Search">
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default">
                         <i class="fas fa-search"></i>
                       </button>
                     </div>
                   </div>
+                  </form>
                 </div>
               </div>
               <!-- the notification display for valveadded -->
@@ -69,7 +70,7 @@
               </div>
               <!-- /.card-body -->
             </div>
-            <div class="text-right"><a href="/addNotification"><button type="button" class="btn btn-info">Add Notification</button></a></div>
+            <!-- <div class="text-right"><a href="/addNotification"><button type="button" class="btn btn-info">Add Notification</button></a></div> -->
             <!-- /.card -->
 
                 </div>

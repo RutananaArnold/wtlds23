@@ -15,10 +15,18 @@ class DeviceStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $statuses = DeviceStatus::paginate();
+        $query = DeviceStatus::query();
 
+        $searchTerm = $request->input('search');
+    
+        if ($searchTerm) {
+            $query->where('status', 'LIKE', '%' . $searchTerm . '%');
+        }
+    
+        $statuses = $query->paginate();
+    
         return view('devices.deviceStatus', compact('statuses'));
     }
 
