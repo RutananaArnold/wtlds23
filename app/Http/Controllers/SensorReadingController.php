@@ -14,10 +14,10 @@ class SensorReadingController extends Controller
 {
     public function store(Request $request)
     {
-        $sensor1 = $request->input('sensor1');
-        $sensor2 = $request->input('sensor2');
-        $incident = $request->input('status');
-        $deviceId = $request->input('device_id');
+        $sensor1 = "2";//$request->input('sensor1');
+        $sensor2 = "3";//$request->input('sensor2');
+        $incident ="4"; //$request->input('status');
+        $deviceId = "1";//$request->input('device_id');
 
         // Create a new SensorReading instance with the provided data
         $Reading = new Reading([

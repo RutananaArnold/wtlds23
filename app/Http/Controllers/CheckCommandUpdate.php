@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Devices;
+use App\Models\Notifications;
+use App\Events\ValveNotificationEvent;
 
 class CheckCommandUpdate extends Controller
 {
@@ -13,7 +16,7 @@ class CheckCommandUpdate extends Controller
         $deviceId = $request->input('device_id');
         
         // Retrieve the corresponding device from the database
-        $device = Device::where('id', $deviceId)->first();
+        $device = Devices::where('id', $deviceId)->first();
         if ($device) {
             // Check if the valvestatus field is set to "closed" in the database
             if ($device->valveStatus === 'closed') {
@@ -37,12 +40,14 @@ class CheckCommandUpdate extends Controller
             $device->save();
         
                 // Return the response to the Arduino
-                return response()->json([
+               return response()->json([
                     'status' => 'success',
                     'message' => 'UNLOCK_SOLENOID',
                 ]);
+                
             }
-        }        
+        }    
+            
     }
 
 }
