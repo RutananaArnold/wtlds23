@@ -49,7 +49,7 @@
                 
 
               </div>
-              <div class="text-right"><a href="/addReading"><button type="button" class="btn btn-info">Add Reading</button></a></div>
+              <!-- <div class="text-right"><a href="/addReading"><button type="button" class="btn btn-info">Add Reading</button></a></div> -->
 
 
 

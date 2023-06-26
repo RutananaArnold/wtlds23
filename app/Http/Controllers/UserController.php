@@ -9,9 +9,19 @@ use DB;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $users = User::paginate();
+
+        $searchTerm = $request->input('search');
+
+        if ($searchTerm){
+            $user = User::where('fname', 'LIKE', '%' . $searchTerm . '%')->orwhere('lname', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('role', 'LIKE', '%' . $searchTerm . '%')->orwhere('email', 'LIKE', '%' . $searchTerm . '%')
+                ->get();
+        
+            return view('users.index', ['users' => $user]);
+        }
 
         return view('users.index', compact('users'));
     }

@@ -50,9 +50,9 @@
 
                 <div class="dropdown-menu" aria-labelledby="devicesDropdown">
                     <a class="dropdown-item text-dark" href="{{ route('devices.devices') }}">Installed Devices</a>
-                    <a class="dropdown-item text-dark" href="/addDevice">Add Device</a>
+                    <!-- <a class="dropdown-item text-dark" href="/addDevice">Add Device</a> -->
                     <a class="dropdown-item text-dark" href="/deviceStatus">Device Status</a>
-                    <a class="dropdown-item text-dark" href="/addDeviceStatus">Update Status</a>
+                    <!-- <a class="dropdown-item text-dark" href="/addDeviceStatus">Update Status</a> -->
                     <a class="dropdown-item text-dark" href="/ViewOnMap">View On Map</a>
                     <a class="dropdown-item text-dark" href="/openValve">Open Valve</a>
                 </div>

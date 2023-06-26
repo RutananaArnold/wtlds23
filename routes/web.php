@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
 // notifications
     Route::get('notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.notifications');
     Route::post('/addNotification', [\App\Http\Controllers\NotificationsController::class, 'create']);
+    // Route::get('/notifications/search', [\App\Http\Controllers\NotificationsController::class, 'search'])->name('notifications.search');
+
 
     Route::get('addDevice', function () {
 		return view('devices.addDevice');

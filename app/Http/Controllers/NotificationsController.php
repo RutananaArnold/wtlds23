@@ -13,9 +13,18 @@ class NotificationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $notifications = Notifications::paginate();
+        $searchTerm = $request->input('search');
+
+        if ($searchTerm){
+            $noti = Notifications::where('title', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('date', 'LIKE', '%' . $searchTerm . '%')
+                ->get();
+        
+            return view('notifications.notifications', ['notifications' => $noti]);
+        }
         return view('notifications.notifications', compact('notifications'));
     }
 
@@ -101,4 +110,15 @@ class NotificationsController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+{
+    $searchTerm = $request->input('search');
+
+    $noti = Notifications::where('title', 'LIKE', '%' . $searchTerm . '%')
+        ->orWhere('date', 'LIKE', '%' . $searchTerm . '%')
+        ->get();
+
+    return view('notifications.notifications', ['notifications' => $noti]);
+}
 }
