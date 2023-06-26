@@ -31,7 +31,7 @@ Route::post('/sendReadings', [App\Http\Controllers\SensorReadingController::clas
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//the route for checking for commands 
+//the route for checking for commands end point
 Route::get('/check_update', [\App\Http\Controllers\CheckCommandUpdate::class, 'checkUpdate']);
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/addDeviceStatus', [\App\Http\Controllers\DeviceStatusController::class, 'create']);
     Route::get('/ViewOnMap', [\App\Http\Controllers\ViewOnMapController::class, 'index'])->name('devices.ViewOnMap');
     //valve for sending command to open the valve
-    Route::get('openValve', [\App\Http\Controllers\DevicesController::class, 'open'])->name('devices.openValve');
+    Route::get('/openValve', [\App\Http\Controllers\DevicesController::class, 'open'])->name('devices.openValve');
     Route::post('/devices/{device}/update', [\App\Http\Controllers\DevicesController::class, 'update'])->name('devices.update');
 
 
