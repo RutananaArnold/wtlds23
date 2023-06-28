@@ -31,7 +31,7 @@ Route::get('/sendReadings', [App\Http\Controllers\SensorReadingController::class
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//the route for checking for commands end point
+//the route for checking for commands end point(may have to remove this one)
 Route::get('/checkUpdate', [\App\Http\Controllers\CheckCommandUpdate::class, 'checkUpdate']);
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');

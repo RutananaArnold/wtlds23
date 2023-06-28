@@ -106,8 +106,25 @@ class DevicesController extends Controller
      */
     public function update(Devices $device)
     {
-        $device->valveStatus = 'on';
+        $device->valveStatus = '0';
         $device->save();
+        if($device->save)
+        {
+             //generate a notification on valve closure
+                // Create a new notification in the "notifications" table
+                $notification = Notifications::create([
+                    'device_id' => $deviceId,
+                    'title' =>'valve-openning',
+                    'message' => 'valve for'+$device->name,
+                    'time' => now()->format('H:i:s'),
+                    'date' => now()->format('Y-m-d'),
+                    
+                ]);
+    
+                 // Broadcast the notification event
+                event(new ValveNotificationEvent($notification));
+                
+        }
 
         return redirect()->back()->with('success', 'Valve status updated successfully.');
     }
