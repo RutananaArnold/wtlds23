@@ -26,13 +26,13 @@ Route::get('/', function () {
 });*/
 
 //one of the url endpoints 
-Route::get('/sendReadings', [App\Http\Controllers\SensorReadingController::class, 'store']);
+Route::post('/sendReadings', [App\Http\Controllers\SensorReadingController::class, 'store']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //the route for checking for commands end point(may have to remove this one)
-Route::get('/checkUpdate', [\App\Http\Controllers\CheckCommandUpdate::class, 'checkUpdate']);
+Route::post('/checkUpdate', [\App\Http\Controllers\CheckCommandUpdate::class, 'checkUpdate']);
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 // users

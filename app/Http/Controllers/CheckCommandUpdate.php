@@ -38,10 +38,7 @@ class CheckCommandUpdate extends Controller
             $device->save();
         
                 // Return the response to the Arduino
-               return response()->json([
-                    'status' => 'success',
-                    'message' => 'open_SOLENOID',
-                ]);
+               return response("open_valve");
                 
             }
         }    
