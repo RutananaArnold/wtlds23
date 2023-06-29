@@ -6,6 +6,8 @@ use App\Models\Reading;
 use App\Http\Requests\StoreReadingRequest;
 use App\Http\Requests\UpdateReadingRequest;
 use Illuminate\Http\Request;
+use App\Models\Devices;
+use App\Models\Notifications;
 use DB;
 
 class ReadingController extends Controller
@@ -36,23 +38,37 @@ class ReadingController extends Controller
     public function create(Request $request)
     {
         DB::table('readings')->insert([
-            'device_id' => 1,
+            'device_id' => $request->device_id,
             'sensor1Reading' => $request->sensor1Reading,
             'sensor2Reading' => $request->sensor2Reading,
             'date' => date('y-m-d'),
             'time' => date('h:i:s'),
         ]);
+         // Update the device status in the "devices" table
+         $deviceId = $request->device_id;
+        $device = Devices::find($deviceId);
+        $incident = $request->incidentDetected;
+        $device->valveStatus = ($incident == 1) ? 'off' : 'on';
+        $device->save();
 
-        //update the status
-        DB::table('device_statuses')->insert([
-            'device_id' => 1,
-            'status' => 'closed',
-            'date' => date('y-m-d'),
-            'time' => date('h:i:s'),
-        ]);
+        // Generate notification if incident detected
+        if ($incident == 1) {
+            // Create a new notification in the "notifications" table
+            $notification = Notifications::create([
+                'device_id' => $deviceId,
+                'title' => 'Incident detected!',
+                'message' => 'Incident detected on ' . $device->name . ' deployed in ' . $device->deploymentLocation,
+                'time' => now()->format('H:i:s'),
+                'date' => now()->format('Y-m-d'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+        }
 
 
-        return response(['success' => true]);
+
+        return response()->json(['message' => 'Data inserted successfully'], 201);
 
         //return back()->with('reports_and_analytics.addReading', 'Reading added successfully');
     }

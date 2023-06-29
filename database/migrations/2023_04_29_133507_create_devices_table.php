@@ -21,7 +21,6 @@ return new class extends Migration
             $table->float('longitude', 10, 6);
             $table->string('deploymentLocation');
             $table->string('valveStatus');
-            $table->string('openCommand');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             $table->foreign('user_id')->references('id')->on('users');

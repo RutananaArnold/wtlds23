@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/addReading', [\App\Http\Controllers\ReadingController::class, 'create']);
+Route::post('/checkUpdate', [\App\Http\Controllers\CheckCommandUpdate::class, 'checkUpdate']);
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

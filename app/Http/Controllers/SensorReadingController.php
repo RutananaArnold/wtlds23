@@ -21,9 +21,9 @@ class SensorReadingController extends Controller
 
         // Create a new SensorReading instance with the provided data
         $sensorReading = new SensorReading([
-            'device_id' => $deviceId,
-            'sensor1' => $sensor1,
-            'sensor2' => $sensor2,
+            'device_id' => $request->device_id,
+            'sensor1' => $request->sensor1_reading,
+            'sensor2' => $request->sensor2_reading,
             'date' => now()->format('Y-m-d'),
             'time' => now()->format('H:i:s'),
             'created_at' => now(),

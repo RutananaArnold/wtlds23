@@ -16,6 +16,5 @@ class Devices extends Model
         'longitude',
         'deploymentLocation',
         'valveStatus',
-        'openCommand'
     ];
 }

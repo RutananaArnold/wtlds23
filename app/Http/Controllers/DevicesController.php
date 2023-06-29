@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Notifications;
 use App\Models\Devices;
 use Illuminate\Http\Request;
 use App\Models\User;
 use DB;
+use App\Events\ValveNotificationEvent;
 
 class DevicesController extends Controller
 {
@@ -44,7 +45,6 @@ class DevicesController extends Controller
             'longitude' => ['required', 'float',],
             'deploymentLocation' => ['required', 'string', 'max:255'],
             'valveStatus' => ['required', 'string', 'max:255'],
-            'openCommand' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -58,7 +58,6 @@ class DevicesController extends Controller
             'longitude'=>$request->longitude,
             'deploymentLocation'=>$request->deploymentLocation,
             'valveStatus' => $request->valveStatus,
-            'openCommand' => 'off',
 
         ]);
         return back()->with('devices.addDevice', 'Device added successfully');
@@ -106,16 +105,16 @@ class DevicesController extends Controller
      */
     public function update(Devices $device)
     {
-        $device->valveStatus = '0';
+        $device->valveStatus = 'on';
         $device->save();
-        if($device->save)
-        {
+        
+
              //generate a notification on valve closure
                 // Create a new notification in the "notifications" table
                 $notification = Notifications::create([
-                    'device_id' => $deviceId,
-                    'title' =>'valve-openning',
-                    'message' => 'valve for'+$device->name,
+                    'device_id' => $device->id,
+                    'title' =>'valve closed',
+                    'message' => 'valve for ' . $device->name,
                     'time' => now()->format('H:i:s'),
                     'date' => now()->format('Y-m-d'),
                     
@@ -124,7 +123,7 @@ class DevicesController extends Controller
                  // Broadcast the notification event
                 event(new ValveNotificationEvent($notification));
                 
-        }
+        
 
         return redirect()->back()->with('success', 'Valve status updated successfully.');
     }
