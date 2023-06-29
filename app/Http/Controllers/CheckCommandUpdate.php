@@ -13,7 +13,7 @@ class CheckCommandUpdate extends Controller
     public function checkUpdate(Request $request)
     {
         // Retrieve device ID from the request
-        $deviceId = $request->device_id;
+        $deviceId =(int) $request->device_id;
         
         // Retrieve the corresponding device from the database
         $device = Devices::where('id', $deviceId)->first();

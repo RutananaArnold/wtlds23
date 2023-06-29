@@ -38,16 +38,16 @@ class ReadingController extends Controller
     public function create(Request $request)
     {
         DB::table('readings')->insert([
-            'device_id' => $request->device_id,
-            'sensor1Reading' => $request->sensor1Reading,
-            'sensor2Reading' => $request->sensor2Reading,
+            'device_id' =>(int)$request->device_id,
+            $sensor1Reading = (float)$request->sensor1Reading,
+            $sensor2Reading = (float)$request->sensor2Reading,
             'date' => date('y-m-d'),
             'time' => date('h:i:s'),
         ]);
          // Update the device status in the "devices" table
-         $deviceId = $request->device_id;
+         $deviceId = (int)$request->device_id;
         $device = Devices::find($deviceId);
-        $incident = $request->incidentDetected;
+        $incident = (int)$request->incidentDetected;
         $device->valveStatus = ($incident == 1) ? 'off' : 'on';
         $device->save();
 
