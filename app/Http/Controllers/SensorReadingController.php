@@ -3,71 +3,58 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Models\Devices;
-use App\Models\Notifications;
+use App\Models\SensorReading;
+use App\Models\Device;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Notification as LaravelNotification;
-use App\Events\NotificationEvent;
-use App\Models\Reading;
+use App\Notifications\IncidentDetectedNotification;
+use App\Models\User;
 
 class SensorReadingController extends Controller
 {
     public function store(Request $request)
     {
-        $sensor1 =$request->input('sensor1Reading');
-        $sensor2 =$request->input('sensor2Reading');
-        $incident =$request->input('incidentDetected');
-        $deviceId =$request->input('device_id');
+        $sensor1 = $request->input('sensor1_reading');
+        $sensor2 = $request->input('sensor2_reading');
+        $incident = $request->input('incident_detected');
+        $deviceId = $request->input('device_id');
 
         // Create a new SensorReading instance with the provided data
-        $Reading = new Reading([
+        $sensorReading = new SensorReading([
             'device_id' => $deviceId,
-            'sensor1Reading' => $sensor1,
-            'sensor2Reading' => $sensor2,
+            'sensor1' => $sensor1,
+            'sensor2' => $sensor2,
             'date' => now()->format('Y-m-d'),
             'time' => now()->format('H:i:s'),
-            
-            
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        $Reading->save();
+        $sensorReading->save();
 
         // Update the device status in the "devices" table
-        $device = Devices::find($deviceId);
-        $device->valveStatus = ($incident == 1) ? '1' : '0'; // 1  dectection , 0 for  no detection
+        $device = Device::find($deviceId);
+        $device->status = ($incident == 1) ? 'off' : 'on';
         $device->save();
 
         // Generate notification if incident detected
         if ($incident == 1) {
             // Create a new notification in the "notifications" table
-            $notification = Notifications::create([
+            $notification = Notification::create([
                 'device_id' => $deviceId,
-                'title' =>'incident',
                 'message' => 'Incident detected!',
                 'time' => now()->format('H:i:s'),
                 'date' => now()->format('Y-m-d'),
-                
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
-        
+            
              // Broadcast the notification event
-             event(new NotificationEvent($notification));           
+             event(new NotificationEvent($notification));
+           
         }
 
-        //query the devices table for the status you will send back to arduino
-    
-            $result = DB::table('your_table_name')
-                        ->select('valveStatus')
-                        ->where('id', $deviceId)
-                        ->first();
-
-            if ($result) {
-                $value = $result->valveStatus;
-            } else {
-                $value = null; // No record found with the given ID
-            }
-
-          return "<?php echo $value; ?>";
-
+        return response()->json(['message' => 'Sensor readings stored successfully']);
     }
 }

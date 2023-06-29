@@ -19,10 +19,8 @@ class CheckCommandUpdate extends Controller
         $device = Devices::where('id', $deviceId)->first();
         if ($device) {
             // Check if the valvestatus field is set to "closed" in the database
-            if ($device->valveStatus === 'closed') {
+            if ($device->valveStatus === 'off') {
                 
-                
-
                 //generate a notification on valve closure
                 // Create a new notification in the "notifications" table
             $notification = Notifications::create([
@@ -36,13 +34,13 @@ class CheckCommandUpdate extends Controller
 
              // Broadcast the notification event
             event(new ValveNotificationEvent($notification));
-            $device->valveStatus = 'open'; // Update the valvestatus to "open"
+            $device->valveStatus = 'on'; // Update the valvestatus to "on"
             $device->save();
         
                 // Return the response to the Arduino
                return response()->json([
                     'status' => 'success',
-                    'message' => 'UNLOCK_SOLENOID',
+                    'message' => 'open_SOLENOID',
                 ]);
                 
             }
