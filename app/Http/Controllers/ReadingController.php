@@ -39,8 +39,8 @@ class ReadingController extends Controller
     {
         DB::table('readings')->insert([
             'device_id' =>(int)$request->device_id,
-            $sensor1Reading = (float)$request->sensor1Reading,
-            $sensor2Reading = (float)$request->sensor2Reading,
+            'sensor1Reading' => (float)$request->sensor1Reading,
+            'sensor2Reading' => (float)$request->sensor2Reading,
             'date' => date('y-m-d'),
             'time' => date('h:i:s'),
         ]);
