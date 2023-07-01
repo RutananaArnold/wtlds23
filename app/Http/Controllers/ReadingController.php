@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Devices;
 use App\Models\Notifications;
 use DB;
+use Illuminate\Support\Carbon;
 
 class ReadingController extends Controller
 {
@@ -41,8 +42,8 @@ class ReadingController extends Controller
             'device_id' =>(int)$request->device_id,
             'sensor1Reading' => (float)$request->sensor1Reading,
             'sensor2Reading' => (float)$request->sensor2Reading,
-            'date' => date('y-m-d'),
-            'time' => date('h:i:s'),
+            'date' => Carbon::now()->format('y-m-d'),
+            'time' => Carbon::now()->format('h:i:s'),
         ]);
          // Update the device status in the "devices" table
          $deviceId = (int)$request->device_id;
