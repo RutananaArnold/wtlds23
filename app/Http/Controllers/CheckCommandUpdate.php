@@ -19,7 +19,8 @@ class CheckCommandUpdate extends Controller
         $device = Devices::where('id', $deviceId)->first();
         if ($device) {
              // Return the response to the Arduino
-            return response("open_valve");
+            // return response("open_valve");
+               return response()->json(['message' => 'open_valve'], 201);
                 
         }    
             
