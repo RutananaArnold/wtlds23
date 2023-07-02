@@ -22,9 +22,7 @@ class CheckCommandUpdate extends Controller
             if($device->valveStatus=="on")
             {
                 return response()->json(['message' => 'open_valve'], 201);
-            } else{
-                return response()->json(['message' => ' '], 201);
-            }
+            } 
                
         }    
             
