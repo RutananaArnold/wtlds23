@@ -103,8 +103,12 @@ class DevicesController extends Controller
      * @param  \App\Models\Devices  $devices
      * @return \Illuminate\Http\Response
      */
-    public function update(Devices $device)
-    {
+    public function update(Request $request)
+    {   
+         // Retrieve device ID from the request
+         $deviceId =(int) $request->device_id;
+         
+        $device = Devices::where('id', $deviceId)->first();
         $device->valveStatus = 'on';
         $device->save();
         
