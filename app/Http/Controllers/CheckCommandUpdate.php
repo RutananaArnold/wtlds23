@@ -21,7 +21,7 @@ class CheckCommandUpdate extends Controller
              // Return the response to the Arduino
             if($device->valveStatus=="on")
             {
-                return response()->json(['message' => 'open_valve'], 201);
+                return response()->json(['message' => 'open_valve'], 200);
             } 
                
         }    
