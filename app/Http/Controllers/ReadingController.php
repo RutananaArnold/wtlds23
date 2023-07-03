@@ -45,15 +45,15 @@ class ReadingController extends Controller
             'date' => Carbon::now()->format('y-m-d'),
             'time' => Carbon::now()->format('h:i:s'),
         ]);
-         // Update the device status in the "devices" table
-         $deviceId = (int)$request->device_id;
+        $deviceId = (int)$request->device_id;
         $device = Devices::find($deviceId);
         $incident = (int)$request->incidentDetected;
-        $device->valveStatus = ($incident == 1) ? 'off' : 'on';
-        $device->save();
-
         // Generate notification if incident detected
         if ($incident == 1) {
+            //the status changes
+            // Update the device status in the "devices" table
+            $device->valveStatus ='off';
+            $device->save();
             // Create a new notification in the "notifications" table
             $notification = Notifications::create([
                 'device_id' => $deviceId,
