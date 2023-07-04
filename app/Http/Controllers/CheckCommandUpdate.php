@@ -23,7 +23,7 @@ class CheckCommandUpdate extends Controller
             {
                 return response()->json(['message' => 'open_valve'], 200);
             } 
-            return response()->json(['message' => 'closed_valve'], 200);   
+            return response()->json(['message' => 'closed_valve'], 400);   
         }    
             
     }
