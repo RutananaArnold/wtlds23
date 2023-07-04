@@ -53,10 +53,10 @@ class ReadingController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'device_id' => 'required|integer',
-            'sensor1Reading' => 'required|string',
-            'sensor2Reading' => 'required|string',
-            'incidentDetected' => 'required|string'
+            'device_id' => 'required',
+            'sensor1Reading' => 'required',
+            'sensor2Reading' => 'required',
+            'incidentDetected' => 'required'
         ]);
 
         DB::table('readings')->insert([
