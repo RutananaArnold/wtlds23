@@ -13,6 +13,7 @@ class Notifications extends Model
         'device_id',
         'title',
         'message',
+        'time',
         'date',
     ];
 }
