@@ -58,6 +58,10 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'SMS_API_URL' => env('SMS_API_URL', ''),
+    'SMS_USERNAME' => env('SMS_USERNAME', ''),
+    'SMS_PASSWORD' => env('SMS_PASSWORD', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

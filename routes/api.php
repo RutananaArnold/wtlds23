@@ -21,3 +21,5 @@ Route::post('/checkUpdate', [\App\Http\Controllers\CheckCommandUpdate::class, 'c
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+

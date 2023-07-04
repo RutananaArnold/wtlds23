@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('message');
             $table->string('date');
+            $table->string('time');
             $table->timestamps();
             $table->foreign('device_id')->references('id')->on('devices');
         });

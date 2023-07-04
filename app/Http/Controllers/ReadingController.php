@@ -10,9 +10,23 @@ use App\Models\Devices;
 use App\Models\Notifications;
 use DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
+
 
 class ReadingController extends Controller
 {
+
+    private $SMS_URL;
+    private $SMS_USERNAME;
+    private $SMS_PASSWORD;
+
+    public function __construct()
+    {
+        $this->SMS_URL = config('app.SMS_API_URL');
+        $this->SMS_USERNAME = config('app.SMS_USERNAME');
+        $this->SMS_PASSWORD = config('app.SMS_PASSWORD');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +52,13 @@ class ReadingController extends Controller
 
     public function create(Request $request)
     {
+        $request->validate([
+            'device_id' => 'required|integer',
+            'sensor1Reading' => 'required|string',
+            'sensor2Reading' => 'required|string',
+            'incidentDetected' => 'required|string'
+        ]);
+
         DB::table('readings')->insert([
             'device_id' =>(int)$request->device_id,
             'sensor1Reading' => (float)$request->sensor1Reading,
@@ -52,19 +73,49 @@ class ReadingController extends Controller
         if ($incident == 1) {
             //the status changes
             // Update the device status in the "devices" table
+           if(!$device)
+           {
+            return response()->json("No device found with given ID!", 404);
+           }
             $device->valveStatus ='off';
             $device->save();
             // Create a new notification in the "notifications" table
-            $notification = Notifications::create([
-                'device_id' => $deviceId,
-                'title' => 'Incident detected!',
-                'message' => 'Incident detected on ' . $device->name . ' deployed in ' . $device->deploymentLocation,
-                'time' => now()->format('H:i:s'),
-                'date' => now()->format('Y-m-d'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
 
+            $notification = new Notifications();
+            $notification->device_id = $deviceId;
+            $notification->title = 'Incident detected!';
+            $notification->message = 'Incident detected on ' . $device->name . ' deployed in ' . $device->deploymentLocation;
+            $notification->time = now()->format('H:i:s');
+            $notification->date = now()->format('Y-m-d');
+            $notification->save();
+
+            // send sms to the logged in user
+
+            $users = DB::table('users')->get();
+
+            $sms_responses = array();
+
+            foreach($users as $user)
+            {
+
+                $response = Http::withOptions([
+                    'verify' => false,
+                ])->get($this->SMS_URL,[
+                    "user" => $this->SMS_USERNAME,
+                    "password"=> $this->SMS_PASSWORD,
+                    "sender"=> "SRES",
+                    "message"=> $notification->message,
+                    'reciever'=> $user->contact
+                ]);
+
+                array_push($sms_responses, $response);
+            }
+
+
+            return response()->json([
+                'message' => 'Data inserted successfully. ',
+                'responses' => $sms_responses], 201);
+            
         }
 
 
