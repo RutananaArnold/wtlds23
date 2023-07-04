@@ -2,6 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/migrate', function () {
+    // Run migrations with the force flag
+    Artisan::call('migrate:fresh', ['--force' => true]);
+    
+    // Get the output of the migration command
+    $output = Artisan::output();
+    
+    // Return the output as a response
+    echo "<pre>{$output}</pre>";
+});
 
 /*
 this is the one you will push
